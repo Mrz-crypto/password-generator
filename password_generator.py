@@ -47,6 +47,7 @@ _WORDS: List[str] = [
 ]
 
 AMBIGUOUS = set("O0oI1lL5S2Z8B|`'\"{}[]()/\\")
+APP_NAME = "Secure Password Generator"
 DEFAULT_SYMBOLS = "!@#$%^&*-_=+?"
 
 PRESETS = {
@@ -294,7 +295,7 @@ def _ask_int(prompt: str, default: int, minimum: int = 1) -> int:
 
 
 def _run_interactive() -> int:
-    print("Secure Password Generator")
+    print(APP_NAME)
     print("1) Easy password")
     print("2) Strong password")
     print("3) Memorable passphrase")
