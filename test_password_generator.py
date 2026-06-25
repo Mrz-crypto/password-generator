@@ -7,7 +7,9 @@ import unittest
 from password_generator import (
     AMBIGUOUS,
     PasswordPolicy,
+    build_policy_from_preset,
     estimate_entropy_bits,
+    estimate_passphrase_entropy_bits,
     generate_passphrase,
     generate_password,
     strength_label,
@@ -64,6 +66,25 @@ class TestPasswordGenerator(unittest.TestCase):
         parts = phrase.split("-")
         self.assertEqual(len(parts), 4)
         self.assertTrue(parts[-1].isdigit())
+
+    def test_passphrase_entropy_includes_number(self):
+        without_number = estimate_passphrase_entropy_bits(4, add_number=False)
+        with_number = estimate_passphrase_entropy_bits(4, add_number=True)
+        self.assertGreater(with_number, without_number)
+
+    def test_basic_preset_is_easy_to_read(self):
+        policy = build_policy_from_preset("basic")
+        self.assertEqual(policy.length, 12)
+        self.assertFalse(policy.use_symbols)
+        self.assertTrue(policy.exclude_ambiguous)
+        pw = generate_password(policy)
+        self.assertEqual(len(pw), 12)
+        self.assertTrue(pw.isalnum())
+
+    def test_preset_overrides(self):
+        policy = build_policy_from_preset("strong", length=20, use_symbols=False)
+        self.assertEqual(policy.length, 20)
+        self.assertFalse(policy.use_symbols)
 
     def test_entropy_and_label(self):
         self.assertEqual(estimate_entropy_bits("", 70), 0.0)
