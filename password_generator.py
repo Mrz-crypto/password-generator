@@ -233,6 +233,11 @@ def strength_label(entropy_bits: float) -> str:
     return "very strong"
 
 
+def format_strength(bits: float) -> str:
+    """Return a compact strength description for display."""
+    return f"~{bits:.0f} bits, {strength_label(bits)}"
+
+
 def _build_arg_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(
         description="Generate secure passwords or passphrases.",
@@ -341,7 +346,7 @@ def _run_interactive() -> int:
             bits = estimate_entropy_bits(secret, sum(len(pool) for pool in policy.pools()))
 
         print(f"\n{secret}")
-        print(f"Strength: ~{bits:.0f} bits, {strength_label(bits)}")
+        print(f"Strength: {format_strength(bits)}")
         if _yes_no("Copy to clipboard?", False):
             print("Copied." if copy_to_clipboard(secret) else "Clipboard copy was not available.")
         if sys.stdin.isatty():
@@ -394,7 +399,7 @@ def main(argv: List[str] | None = None) -> int:
             if args.plain:
                 print(secret)
             else:
-                print(f"{secret}\t(~{bits:.0f} bits, {strength_label(bits)})")
+                print(f"{secret}\t({format_strength(bits)})")
         if args.copy and last_secret:
             if not copy_to_clipboard(last_secret):
                 print("warning: clipboard copy was not available.", file=sys.stderr)
