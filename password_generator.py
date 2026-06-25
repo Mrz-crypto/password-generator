@@ -68,6 +68,11 @@ PRESETS = {
         "use_symbols": True,
         "exclude_ambiguous": False,
     },
+    "memorable": {
+        "length": 16,
+        "use_symbols": False,
+        "exclude_ambiguous": True,
+    },
 }
 
 
