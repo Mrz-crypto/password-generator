@@ -306,6 +306,9 @@ def _run_interactive() -> int:
         choice = input("Choose an option [2]: ").strip() or "2"
     except EOFError:
         choice = "2"
+    if choice not in {"1", "2", "3"}:
+        print("Unknown option, using strong password.")
+        choice = "2"
 
     try:
         if choice == "3":
