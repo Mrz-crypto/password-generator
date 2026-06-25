@@ -50,6 +50,7 @@ AMBIGUOUS = set("O0oI1lL5S2Z8B|`'\"{}[]()/\\")
 APP_NAME = "Secure Password Generator"
 APP_VERSION = "1.1.0"
 DEFAULT_SYMBOLS = "!@#$%^&*-_=+?"
+MIN_INTERACTIVE_PASSWORD_LENGTH = 8
 
 PRESETS = {
     "basic": {
@@ -320,7 +321,11 @@ def _run_interactive() -> int:
         else:
             preset = "basic" if choice == "1" else "strong"
             default_length = PRESETS[preset]["length"]
-            length = _ask_int("Password length?", int(default_length), minimum=8)
+            length = _ask_int(
+                "Password length?",
+                int(default_length),
+                minimum=MIN_INTERACTIVE_PASSWORD_LENGTH,
+            )
             use_symbols = _yes_no("Include symbols?", bool(PRESETS[preset]["use_symbols"]))
             exclude_ambiguous = _yes_no("Avoid confusing characters like O/0 and l/1?", True)
             policy = build_policy_from_preset(
