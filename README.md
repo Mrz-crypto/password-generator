@@ -63,6 +63,7 @@ python password_generator.py --plain
 | Preset | Best for | Default |
 | --- | --- | --- |
 | `basic` | Everyday accounts where readability matters | 12 characters, letters and numbers |
+| `memorable` | Longer passwords that avoid symbols | 16 characters, letters and numbers |
 | `strong` | Important accounts like email, banking, cloud, and school | 18 characters, symbols included |
 | `maximum` | Password managers and high-value accounts | 24 characters, symbols included |
 
