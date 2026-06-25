@@ -101,3 +101,5 @@ python -m unittest -v
 - Store passwords in a password manager when possible.
 - Use passphrases when you need something memorable.
 - Do not send passwords through chat, email, or screenshots.
+
+More details are in [SECURITY.md](SECURITY.md).
