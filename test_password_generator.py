@@ -10,6 +10,7 @@ from password_generator import (
     build_policy_from_preset,
     estimate_entropy_bits,
     estimate_passphrase_entropy_bits,
+    format_strength,
     generate_passphrase,
     generate_password,
     strength_label,
@@ -92,6 +93,7 @@ class TestPasswordGenerator(unittest.TestCase):
         self.assertGreater(bits, 0)
         self.assertEqual(strength_label(10), "very weak")
         self.assertEqual(strength_label(200), "very strong")
+        self.assertEqual(format_strength(64.2), "~64 bits, strong")
 
     def test_randomness_differs(self):
         policy = PasswordPolicy(length=24)
