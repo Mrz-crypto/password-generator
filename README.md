@@ -30,6 +30,8 @@ By default, the app opens a simple interactive menu.
 
 ## Command Examples
 
+More copy-paste examples are available in [EXAMPLES.md](EXAMPLES.md).
+
 Generate one strong password without the menu:
 
 ```bash
