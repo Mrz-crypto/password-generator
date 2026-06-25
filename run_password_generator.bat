@@ -3,6 +3,17 @@ setlocal
 cd /d "%~dp0"
 
 where python >nul 2>nul
+if not errorlevel 1 (
+    python password_generator.py
+    exit /b %errorlevel%
+)
+
+where py >nul 2>nul
+if not errorlevel 1 (
+    py password_generator.py
+    exit /b %errorlevel%
+)
+
 if errorlevel 1 (
     echo Python is required to run this password generator.
     echo Download Python from https://www.python.org/downloads/
@@ -11,5 +22,3 @@ if errorlevel 1 (
     pause
     exit /b 1
 )
-
-python password_generator.py
