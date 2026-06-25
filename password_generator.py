@@ -48,6 +48,7 @@ _WORDS: List[str] = [
 
 AMBIGUOUS = set("O0oI1lL5S2Z8B|`'\"{}[]()/\\")
 APP_NAME = "Secure Password Generator"
+APP_VERSION = "1.1.0"
 DEFAULT_SYMBOLS = "!@#$%^&*-_=+?"
 
 PRESETS = {
@@ -264,6 +265,7 @@ def _build_arg_parser() -> argparse.ArgumentParser:
                    help="Print only the secret, without strength details.")
     p.add_argument("--interactive", action="store_true",
                    help="Ask a few beginner-friendly questions instead of using flags.")
+    p.add_argument("--version", action="version", version=f"{APP_NAME} {APP_VERSION}")
     return p
 
 
