@@ -87,6 +87,12 @@ class TestPasswordGenerator(unittest.TestCase):
         self.assertEqual(policy.length, 20)
         self.assertFalse(policy.use_symbols)
 
+    def test_memorable_preset_uses_no_symbols(self):
+        policy = build_policy_from_preset("memorable")
+        pw = generate_password(policy)
+        self.assertEqual(len(pw), 16)
+        self.assertTrue(pw.isalnum())
+
     def test_entropy_and_label(self):
         self.assertEqual(estimate_entropy_bits("", 70), 0.0)
         bits = estimate_entropy_bits("abcdefghij", 70)
