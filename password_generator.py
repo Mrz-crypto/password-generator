@@ -14,7 +14,7 @@ Features:
     - A small command-line interface.
 
 Run:
-    python3 password_generator.py --help
+    python3 password_generator.py
 """
 
 from __future__ import annotations
@@ -333,13 +333,20 @@ def _run_interactive() -> int:
         print(f"Strength: ~{bits:.0f} bits, {strength_label(bits)}")
         if _yes_no("Copy to clipboard?", False):
             print("Copied." if copy_to_clipboard(secret) else "Clipboard copy was not available.")
+        if sys.stdin.isatty():
+            input("\nPress Enter to exit...")
     except ValueError as exc:
         print(f"error: {exc}")
+        if sys.stdin.isatty():
+            input("\nPress Enter to exit...")
         return 1
     return 0
 
 
 def main(argv: List[str] | None = None) -> int:
+    if argv is None and len(sys.argv) == 1:
+        return _run_interactive()
+
     args = _build_arg_parser().parse_args(argv)
 
     if args.interactive:

@@ -15,16 +15,23 @@ It uses Python's built-in `secrets` module, which is designed for cryptographic 
 
 ## Quick Start
 
-Run the interactive version:
+Download the project, then run the generator:
 
-```bash
-python password_generator.py --interactive
-```
-
-Generate one strong password:
+- Windows: double-click `run_password_generator.bat`
+- Mac/Linux: open a terminal in the folder and run:
 
 ```bash
 python password_generator.py
+```
+
+By default, the app opens a simple interactive menu.
+
+## Command Examples
+
+Generate one strong password without the menu:
+
+```bash
+python password_generator.py --preset strong
 ```
 
 Generate an easy-to-read password:
