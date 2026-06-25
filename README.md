@@ -4,6 +4,8 @@ A simple, secure password and passphrase generator for everyday use.
 
 It uses Python's built-in `secrets` module, which is designed for cryptographic randomness. No extra packages are required.
 
+New here? See [QUICKSTART.md](QUICKSTART.md) for the shortest download-and-run steps.
+
 ## Features
 
 - Easy, strong, and maximum password presets
